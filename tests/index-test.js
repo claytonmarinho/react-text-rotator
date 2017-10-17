@@ -1,15 +1,13 @@
 import React from 'react';
-import {render, findDOMNode, unmountComponentAtNode} from 'react-dom';
+import {renderToStaticMarkup as render} from 'react-dom/server'
 import expect from 'expect';
 
-import Component from '../src';
+import MainComponent from 'src/';
 
 describe('Component', () => {
-	let node;
 	let props;
 
   beforeEach(() => {
-    node = document.createElement('div');
 		props = {
 			content: [
 				{
@@ -23,13 +21,8 @@ describe('Component', () => {
     };
   });
 
-  afterEach(() => {
-    unmountComponentAtNode(node);
-  });
-
   it("render component", () => {
-		render(<Component {...props} />, node, () => {
-			expect(node).toExist();
-    })
+		expect(render(<MainComponent {...props} />))
+			.toContain('<span></span>');
   });
 });

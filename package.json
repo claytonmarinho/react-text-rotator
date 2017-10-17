@@ -33,7 +33,7 @@
   "author": "Clayton Marinho <claytonmarinho@gmail.com>",
   "homepage": "",
   "license": "MIT",
-  "repository": "",
+  "repository": "https://github.com/claytonmarinho/react-text-rotator",
   "keywords": [
     "react-component"
   ]
