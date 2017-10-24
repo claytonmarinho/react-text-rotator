@@ -7,7 +7,7 @@ import MainComponent from 'src/';
 describe('Component', () => {
 	let props;
 
-  beforeEach(() => {
+	beforeEach(() => {
 		props = {
 			content: [
 				{
@@ -18,11 +18,11 @@ describe('Component', () => {
 			],
 			time: 5000,
 			startDelay: 0,
-    };
-  });
+		};
+	});
 
-  it('render component', () => {
+	it('render component', () => {
 		expect(render(<MainComponent {...props} />))
 			.toContain('<span></span>');
-  });
+	});
 });

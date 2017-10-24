@@ -79,7 +79,7 @@ Props
 
 | Name | Type | Required | Default | Obs |
 | --- | --- | --- | --- |
-| contents | Array | True | | Array of content shape (see bellow)
+| content | Array | True | | Array of content shape (see bellow)
 | time | Number | False | 2500 | Time in milliseconds
 | startDelay | Number | False | 0 | Wait before the first content (milliseconds)
 

@@ -77,7 +77,7 @@ class TextRotator extends Component {
 
 TextRotator.propTypes = {
 	content: PropTypes.arrayOf(PropTypes.shape({
-    text: PropTypes.string,
+    text: PropTypes.string.isRequired,
     className: PropTypes.string,
     animation: PropTypes.oneOf(['fade']),
   })).isRequired,
