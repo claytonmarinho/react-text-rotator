@@ -1,0 +1,52 @@
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+html, body, #demo {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+#demo {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+}
+
+#demo .wrapper {
+  margin: auto;
+}
+
+#demo .wrapper span {
+  font-size: 40px;
+}
+
+.github-buttons {
+  width: 100%;
+  margin-top: 50px;
+}
+
+.classA {
+  color: red; 
+}
+
+.classB {
+  color: black;
+  text-decoration: underline;
+}
+
+.classC {
+  color: purple; 
+}
+
+.classD {
+  color: blue; 
+  font-style: italic;
+}
+
+.classE {
+  color: orange;
+}

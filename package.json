@@ -21,7 +21,8 @@
   },
   "dependencies": {
     "prop-types": "^15.6.0",
-    "react-addons-css-transition-group": "^15.6.2"
+    "react-addons-css-transition-group": "^15.6.2",
+    "react-github-button": "^0.1.11"
   },
   "peerDependencies": {
     "react": "15.x"
@@ -39,8 +40,8 @@
   "repository": "https://github.com/claytonmarinho/react-text-rotator",
   "keywords": [
     "react",
-		"component",
-		"text",
-		"rotator"
+    "component",
+    "text",
+    "rotator"
   ]
 }

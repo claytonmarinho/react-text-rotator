@@ -12,7 +12,7 @@ class TextRotator extends Component {
       index: 0,
     };
 
-		this.willUnmount = false;
+    this.willUnmount = false;
   }
 
   componentDidMount() {
@@ -21,27 +21,27 @@ class TextRotator extends Component {
 
   componentWillUnmount() {
     clearInterval(this.interval);
-		clearTimeout(this.timeOut);
-		this.willUnmount = true;
+    clearTimeout(this.timeOut);
+    this.willUnmount = true;
   }
 
   startTextRotator = () => {
-		if (!this.willUnmount) {
-			const { content, startDelay, time } = this.props;
+    if (!this.willUnmount) {
+      const { content, startDelay, time } = this.props;
 
-			if (content && content.length === 1) {
-				this.setState({ current: content[0] });
-			} else if (content && content.length > 1) {
-				const current = content[0];
-				this.setState({ current });
+      if (content && content.length === 1) {
+        this.setState({ current: content[0] });
+      } else if (content && content.length > 1) {
+        const current = content[0];
+        this.setState({ current });
 
-				this.timeOut = setTimeout(() => {
-					this.interval = setInterval(() => {
-						this.nextText();
-					}, time);
-				}, startDelay);
-			}
-		}
+        this.timeOut = setTimeout(() => {
+          this.interval = setInterval(() => {
+            this.nextText();
+          }, time);
+        }, startDelay);
+      }
+    }
   }
 
   nextText = () => {
@@ -62,7 +62,7 @@ class TextRotator extends Component {
 
     if (!text) return <span />;
 
-		return (
+    return (
       <ReactCSSTransitionGroup
         transitionName={`react-text-rotator-${animation}`}
         transitionEnterTimeout={300}
@@ -79,14 +79,13 @@ TextRotator.propTypes = {
 	content: PropTypes.arrayOf(PropTypes.shape({
     text: PropTypes.string,
     className: PropTypes.string,
-		animation: PropTypes.oneOf(['fade']),
+    animation: PropTypes.oneOf(['fade']),
   })).isRequired,
   time: PropTypes.number,
   startDelay: PropTypes.number,
 };
 
 TextRotator.defaultProps = {
-  animation: 'fade',
   time: 2500,
   startDelay: 0,
 };
