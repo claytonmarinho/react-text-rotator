@@ -62,7 +62,7 @@ const content = [
 ];
 
 const Component = () => (
-	<div>
+  <div>
     <h1>React Text Rotator</h1>
     <ReactTextRotator
       content={content}
@@ -78,15 +78,15 @@ Props
 -----------
 
 | Name | Type | Required | Default | Obs |
-| --- | --- | --- | --- |
+| --- | --- | --- | --- | --- |
 | content | Array | True | | Array of content shape (see bellow)
 | time | Number | False | 2500 | Time in milliseconds
 | startDelay | Number | False | 0 | Wait before the first content (milliseconds)
 
-### Content shape
+Content shape
 
 | Name | Type | Required | Default | Obs |
-| --- | --- | --- | --- |
+| --- | --- | --- | --- | --- |
 | text | String | True | | Text to be shown
 | className | String | False | | Class name for each span
 | animation | String | False | 'fade' | Pre-defined animation for the content (only fade is available)
