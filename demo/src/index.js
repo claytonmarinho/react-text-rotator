@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {render} from 'react-dom';
+import React from 'react';
+import { render } from 'react-dom';
 import ReactTextRotator from '../../src';
 import './style.css';
 
@@ -32,7 +32,7 @@ const content = [
 ];
 
 const Demo = () => (
-	<div className='wrapper'>
+  <div className='wrapper'>
     <h1>React Text Rotator</h1>
     <div>
       <ReactTextRotator

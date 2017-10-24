@@ -97,6 +97,8 @@ Development
 
 ### Installation
 
+- Clone `git clone https://github.com/claytonmarinho/react-text-rotator.git`.
+
 - Running `npm install` in the components's root directory will install everything you need for development.
 
 ### Demo Development Server

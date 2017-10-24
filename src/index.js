@@ -26,22 +26,20 @@ class TextRotator extends Component {
   }
 
   startTextRotator = () => {
-    if (!this.willUnmount) {
-      const { content, startDelay, time } = this.props;
+    const { content, startDelay, time } = this.props;
 
-      if (content && content.length === 1) {
-        this.setState({ current: content[0] });
-      } else if (content && content.length > 1) {
-        const current = content[0];
-        this.setState({ current });
+    if (content && content.length === 1) {
+      this.setState({ current: content[0] });
+    } else if (content && content.length > 1) {
+      const current = content[0];
+      this.setState({ current });
 
-        this.timeOut = setTimeout(() => {
-          this.interval = setInterval(() => {
-            this.nextText();
-          }, time);
-        }, startDelay);
-      }
-    }
+      this.timeOut = setTimeout(() => {
+        this.interval = setInterval(() => {
+          this.nextText();
+        }, time);
+      }, startDelay);
+    }    
   }
 
   nextText = () => {
