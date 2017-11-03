@@ -1,6 +1,6 @@
 {
   "name": "react-text-rotator",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Simple React component for rotating text",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "prop-types": "^15.6.0",
-    "react-addons-css-transition-group": "^15.6.2",
+    "react-addons-css-transition-group": "^15.6.2"
   },
   "peerDependencies": {
     "react": "15.x"
