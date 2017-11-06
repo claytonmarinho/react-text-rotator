@@ -30,7 +30,7 @@ Usage
 -----------
 
 ```javascript
-import React, { Component } from 'react';
+import React from 'react';
 import ReactTextRotator from 'react-text-rotator';
 
 const content = [
@@ -61,9 +61,9 @@ const content = [
   },
 ];
 
-const Component = () => (
+const MyComponent = () => (
   <div>
-    <h1>React Text Rotator</h1>
+    <h1>Churchill's Speech</h1>
     <ReactTextRotator
       content={content}
       time={5000}
