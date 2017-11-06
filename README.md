@@ -63,7 +63,7 @@ const content = [
 
 const MyComponent = () => (
   <div>
-    <h1>Churchill's Speech</h1>
+    <h1>Churchill Speech</h1>
     <ReactTextRotator
       content={content}
       time={5000}
