@@ -1,22 +1,65 @@
-import React, { Component } from 'react';
+// @flow
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
-import './styles/transitions.less';
+import { Transition } from 'react-transition-group';
 
-class TextRotator extends Component {
-  constructor() {
-    super();
+function transitions({ duration }) {
+  return {
+    "fade-default": {
+      transition: `opacity ${duration}ms ease-in`,
+      opacity: 0,
+    }, 
+  
+    "fade-entering":  {
+      opacity: 0,
+    },
+    
+    "fade-entered": {
+      opacity: 1,
+    },
+    
+    "fade-exiting": {
+      opacity: 0,
+    },
+    
+    "fade-exited": {
+      opacity: 0,
+    },   
+  }
+}
 
-    this.state = {
-      current: null,
-      index: 0,
-    };
+type Props = {
+  content: Array<Object>,
+  time: number,
+  startDelay: number,
+  transitionTime: number,
+};
 
-    this.willUnmount = false;
+type State = {
+  current: any,
+  index: number,
+  entered: boolean,
+};
+
+class TextRotator extends React.Component<Props, State> {
+  static defaultProps = {
+    time: 2500,
+    startDelay: 250,
+    transitionTime: 500,
   }
 
+  state = {
+    current: null,
+    index: 0,
+    entered: false,
+  }
+
+  willUnmount = false;
+  interval: any;
+  timeOut: any;
+
   componentDidMount() {
-    this.startTextRotator();
+    this.trigger();
   }
 
   componentWillUnmount() {
@@ -25,67 +68,61 @@ class TextRotator extends Component {
     this.willUnmount = true;
   }
 
-  startTextRotator = () => {
+  trigger = () => {
     const { content, startDelay, time } = this.props;
-
-    if (content && content.length === 1) {
-      this.setState({ current: content[0] });
-    } else if (content && content.length > 1) {
-      const current = content[0];
-      this.setState({ current });
-
+   
+    if (content.length > 0) {
       this.timeOut = setTimeout(() => {
-        this.interval = setInterval(() => {
-          this.nextText();
-        }, time);
+        this.next();
+        this.interval = setInterval(() => this.next(), time);
       }, startDelay);
-    }    
+    }   
   }
 
-  nextText = () => {
+  next = () => {
     if (!this.willUnmount) {
-      const { content } = this.props;
+      const { content, time } = this.props;
       const currentStep = this.state.index;
       const total = content.length || 0;
-      const index = (total === currentStep + 1) ? 0 : currentStep + 1;
+      
+      let index = 0;
+      
+      if (this.state.current) {
+        index = (total === currentStep + 1) ? 0 : currentStep + 1;    
+      }
+      
       const current = content[index];
-
-      this.setState({ current, index });
+      this.setState({ index });
+      this.setCurrent(current);
     }
   }
 
+  setCurrent = (item: Object) => {
+    const { time, transitionTime } = this.props;
+    this.setState({ current: item, entered: true });
+    setTimeout(() => this.setState({ entered: false }), time - transitionTime)
+  }
+
   render() {
-    const { current, index } = this.state;
-    const { className, animation = 'fade', text } = current || {};
+    const { transitionTime, content } = this.props;
+    const { current, index, entered } = this.state;
+    const { className, animation = 'fade', text } = current || (content && content[0]) || {};
+    const styles = transitions({ duration: transitionTime });
 
     if (!text) return <span />;
 
     return (
-      <CSSTransitionGroup
-        transitionName={`react-text-rotator-${animation}`}
-        transitionEnterTimeout={300}
-        transitionLeaveTimeout={0}
-        transitionLeave={false}
-      >
-        <span key={index} className={className}>{text}</span>
-      </CSSTransitionGroup>
+      <Transition in={entered} timeout={transitionTime} >
+        {state => (
+          <span 
+            key={index}
+            className={className}
+            style={{ ...styles[`${animation}-default`], ...styles[`${animation}-${state}`]}}
+          >{text}</span> 
+        )}
+      </Transition>
     );
   }
 }
-
-TextRotator.propTypes = {
-	content: PropTypes.arrayOf(PropTypes.shape({
-    text: PropTypes.string.isRequired,
-    className: PropTypes.string,
-    animation: PropTypes.oneOf(['fade']),
-  })).isRequired,
-  time: PropTypes.number,
-  startDelay: PropTypes.number,
-};
-
-TextRotator.defaultProps = {
-  time: 2500,
-  startDelay: 0,
-};
 
 export default TextRotator;

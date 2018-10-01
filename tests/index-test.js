@@ -12,7 +12,7 @@ describe('Component', () => {
 			content: [
 				{
 					text: 'text a',
-					className: '',
+					className: 'test',
 					animation: 'fade',
 				},
 			],
@@ -23,6 +23,6 @@ describe('Component', () => {
 
 	it('render component', () => {
 		expect(render(<MainComponent {...props} />))
-			.toContain('<span></span>');
+			.toContain('<span class="test" style="transition:opacity 500ms ease-in;opacity:0">text a</span>');
 	});
 });
