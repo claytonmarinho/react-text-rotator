@@ -6,4 +6,7 @@ module.exports = {
     esModules: true,
     umd: false,
   },
+  babel: {
+    presets: ["flow"]
+  }
 };
