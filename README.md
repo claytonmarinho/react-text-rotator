@@ -81,7 +81,8 @@ Props
 | --- | --- | --- | --- | --- |
 | content | Array | True | | Array of content shape (see bellow)
 | time | Number | False | 2500 | Time in milliseconds
-| startDelay | Number | False | 0 | Wait before the first content (milliseconds)
+| startDelay | Number | False | 250 | Wait before the first content (milliseconds)
+| transitionTime | Number | False | 500 | Time in milliseconds
 
 Content shape
 
