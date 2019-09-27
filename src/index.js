@@ -1,31 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
 import { Transition } from "react-transition-group";
-
-function transitions({ duration }) {
-  return {
-    "fade-default": {
-      transition: `opacity ${duration}ms ease-in`,
-      opacity: 0
-    },
-
-    "fade-entering": {
-      opacity: 0
-    },
-
-    "fade-entered": {
-      opacity: 1
-    },
-
-    "fade-exiting": {
-      opacity: 0
-    },
-
-    "fade-exited": {
-      opacity: 0
-    }
-  };
-}
+import transitions from "./transitions";
 
 let interval;
 let timeout;
