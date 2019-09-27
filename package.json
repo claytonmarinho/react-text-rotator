@@ -17,13 +17,12 @@
     "test": "nwb test-react",
     "test:coverage": "nwb test-react --coverage",
     "test:watch": "nwb test-react --server",
-    "deploy:demo": "nwb build-demo && gh-pages -d demo/dist",
-    "flow": "flow"
+    "deploy:demo": "nwb build-demo && gh-pages -d demo/dist"
   },
   "dependencies": {
-    "prop-types": "^15.6.0",
-    "react-jss": "^8.6.1",
-    "react-transition-group": "^2.5.0"
+    "prop-types": "^15.7.2",
+    "react-jss": "^10.0.0",
+    "react-transition-group": "^4.3.0"
   },
   "peerDependencies": {
     "react": "16.2"
@@ -31,10 +30,9 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-flow": "^6.23.0",
-    "flow-bin": "^0.81.0",
     "gh-pages": "^1.2.0",
     "nwb": "0.23.0",
-    "react": "^16.2.0",
+    "react": "^16.9.0",
     "react-dom": "^16.2.0"
   },
   "author": "Clayton Marinho <claytonmarinho@gmail.com>",
