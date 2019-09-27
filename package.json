@@ -1,6 +1,6 @@
 {
   "name": "react-text-rotator",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Simple React component for rotating text",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -21,19 +21,15 @@
   },
   "dependencies": {
     "prop-types": "^15.7.2",
-    "react-jss": "^10.0.0",
+    "react-dom": "^16.9.0",
+    "react": "^16.9.0",
     "react-transition-group": "^4.3.0"
-  },
-  "peerDependencies": {
-    "react": "16.2"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-flow": "^6.23.0",
-    "gh-pages": "^1.2.0",
-    "nwb": "0.23.0",
-    "react": "^16.9.0",
-    "react-dom": "^16.2.0"
+    "gh-pages": "^2.1.1",
+    "nwb": "^0.23.0"
   },
   "author": "Clayton Marinho <claytonmarinho@gmail.com>",
   "homepage": "https://claytonmarinho.github.io/react-text-rotator/",
