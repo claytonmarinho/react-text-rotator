@@ -5,11 +5,12 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "webpack --config webpack.config.js --env prod",
-    "build-dev": "webpack --config webpack.config.js --env dev",
-    "test": "nwb test-react",
-    "test:coverage": "nwb test-react --coverage",
-    "test:watch": "nwb test-react --server",
-    "deploy:demo": "nwb build-demo && gh-pages -d demo/dist"
+    "start": "webpack serve --config ./demo/webpack.config.js --mode=development",
+    "demo:build": "rm -rf ./demo/dist && webpack --config ./demo/webpack.config.js",
+    "demo:deploy": "npm run demo:build && gh-pages -d demo/dist",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test": "jest"
   },
   "dependencies": {
     "prop-types": "^15.7.2",
@@ -22,10 +23,15 @@
     "@babel/plugin-transform-runtime": "^7.12.1",
     "@babel/preset-env": "^7.12.7",
     "@babel/preset-react": "^7.12.7",
+    "babel-loader": "^8.2.2",
+    "file-loader": "^6.2.0",
     "gh-pages": "^2.2.0",
+    "html-webpack-plugin": "^4.5.0",
+    "jest": "^26.6.3",
+    "style-loader": "^2.0.0",
     "webpack": "^5.9.0",
     "webpack-cli": "^4.2.0",
-    "babel-loader": "^8.2.2"
+    "webpack-dev-server": "^3.11.0"
   },
   "author": "Clayton Marinho <claytonmarinho@gmail.com>",
   "homepage": "https://claytonmarinho.github.io/react-text-rotator/",
