@@ -1,3 +1,4 @@
+
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
 html, body, #demo {
@@ -10,14 +11,9 @@ body {
 }
 
 #demo {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   text-align: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
 }
 
 #demo .wrapper {
@@ -54,5 +50,3 @@ body {
 .classE {
   color: orange;
 }
-
-/*# sourceMappingURL=demo.bb274e72.css.map*/
