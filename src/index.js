@@ -33,17 +33,19 @@ function TextRotator({ content, time, startDelay, transitionTime }) {
     enteredTimeout = setTimeout(() => setEntered(false), time - transitionTime);
   }
 
-  if (!text) return <span />;
+  if (!text) {
+    return <span />;
+  }
 
   return (
     <Transition in={entered} timeout={transitionTime}>
-      {state => (
+      {(state) => (
         <span
           key={indexRef}
           className={className}
           style={{
             ...styles[`${animation}-default`],
-            ...styles[`${animation}-${state}`]
+            ...styles[`${animation}-${state}`],
           }}
         >
           {text}
@@ -57,13 +59,13 @@ TextRotator.propTypes = {
   time: PropTypes.number,
   startDelay: PropTypes.number,
   transitionTime: PropTypes.number,
-  content: PropTypes.arrayOf(PropTypes.object).isRequired
+  content: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 TextRotator.defaultProps = {
   time: 2500,
   startDelay: 250,
-  transitionTime: 500
+  transitionTime: 500,
 };
 
 export default TextRotator;
