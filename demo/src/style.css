@@ -1,13 +1,14 @@
-
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
-html, body, #demo {
+html,
+body,
+#demo {
   height: 100%;
   margin: 0;
 }
 
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 #demo {
@@ -29,24 +30,6 @@ body {
   margin-top: 50px;
 }
 
-.classA {
-  color: red; 
-}
-
-.classB {
-  color: black;
-  text-decoration: underline;
-}
-
-.classC {
-  color: purple; 
-}
-
-.classD {
-  color: blue; 
-  font-style: italic;
-}
-
-.classE {
-  color: orange;
+.example {
+  padding: 50px;
 }

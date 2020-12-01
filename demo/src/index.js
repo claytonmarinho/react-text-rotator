@@ -1,59 +1,59 @@
-import React from "react";
-import { render } from "react-dom";
-import ReactTextRotator from "../../src";
+import "@babel/polyfill";
+
+import React, { useState, Suspense } from "react";
+import ReactDOM from "react-dom";
 import "./style.css";
 
-const content = [
-  {
-    text: "We shall fight on the beaches.",
-    className: "classA",
-    animation: "fade",
-  },
-  {
-    text: "We shall fight on the landing grounds.",
-    className: "classB",
-    animation: "fade",
-  },
-  {
-    text: "We shall fight in the fields and in the streets.",
-    className: "classC",
-    animation: "fade",
-  },
-  {
-    text: "We shall fight in the hills.",
-    className: "classD",
-    animation: "fade",
-  },
-  {
-    text: "We shall never surrender...",
-    className: "classE",
-    animation: "fade",
-  },
-];
+const BasicExample = React.lazy(() => import("./examples/basic"));
 
-const Demo = () => (
-  <div className="wrapper">
-    <h1>React Text Rotator1</h1>
-    <div>
-      <ReactTextRotator content={content} time={5000} startDelay={2000} />
-    </div>
-    <div className="github-buttons">
-      <iframe
-        src="https://ghbtns.com/github-btn.html?user=claytonmarinho&repo=react-text-rotator&type=star&count=true&size=large"
-        frameBorder="0"
-        scrolling="0"
-        width="160px"
-        height="30px"
-      ></iframe>
-      <iframe
-        src="https://ghbtns.com/github-btn.html?user=claytonmarinho&repo=react-text-rotator&type=fork&count=true&size=large"
-        frameBorder="0"
-        scrolling="0"
-        width="160px"
-        height="30px"
-      ></iframe>
-    </div>
-  </div>
-);
+const App = () => {
+  const [example, setExample] = useState("basic");
 
-render(<Demo />, document.querySelector("#demo"));
+  return (
+    <div className="wrapper">
+      <h1>React Text Rotator</h1>
+      <form onChange={(e) => setExample(e.target.value)}>
+        <input
+          type="radio"
+          id="basic"
+          name="example"
+          value="basic"
+          defaultChecked={example === "basic"}
+        />
+        <label htmlFor="basic">basic</label>
+
+        {/* <input
+          type="radio"
+          id="async"
+          name="example"
+          value="advanced"
+          defaultChecked={example === "advanced"}
+        />
+        <label htmlFor="advanced">advanced</label> */}
+      </form>
+      <div className="example">
+        <Suspense fallback={<div>Loading...</div>}>
+          {example === "basic" && <BasicExample />}
+        </Suspense>
+      </div>
+      <div className="github-buttons">
+        <iframe
+          src="https://ghbtns.com/github-btn.html?user=claytonmarinho&repo=react-text-rotator&type=star&count=true&size=large"
+          frameBorder="0"
+          scrolling="0"
+          width="160px"
+          height="30px"
+        ></iframe>
+        <iframe
+          src="https://ghbtns.com/github-btn.html?user=claytonmarinho&repo=react-text-rotator&type=fork&count=true&size=large"
+          frameBorder="0"
+          scrolling="0"
+          width="160px"
+          height="30px"
+        ></iframe>
+      </div>
+    </div>
+  );
+};
+
+ReactDOM.render(<App />, document.querySelector("#demo"));
