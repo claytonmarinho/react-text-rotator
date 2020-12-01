@@ -1,7 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-module.exports = (env) => ({
+module.exports = () => ({
   entry: path.resolve(process.cwd(), "demo/src/index.js"),
   target: "web",
   module: {
