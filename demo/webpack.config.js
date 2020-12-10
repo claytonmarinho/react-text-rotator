@@ -18,19 +18,7 @@ module.exports = () => ({
       },
       {
         test: /\.css$/i,
-        use: [
-          {
-            loader: "style-loader",
-          },
-          {
-            loader: "file-loader",
-            options: {
-              name: "[name].[ext]",
-              publicPath: "css",
-              esModule: false,
-            },
-          },
-        ],
+        use: ["style-loader", "css-loader"],
       },
     ],
   },

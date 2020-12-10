@@ -21,10 +21,6 @@ body {
   margin: auto;
 }
 
-#demo .wrapper span {
-  font-size: 40px;
-}
-
 .github-buttons {
   width: 100%;
   margin-top: 50px;
@@ -32,4 +28,27 @@ body {
 
 .example {
   padding: 50px;
+  font-size: 40px;
+}
+
+.classA {
+  color: red;
+}
+
+.classB {
+  color: black;
+  text-decoration: underline;
+}
+
+.classC {
+  color: purple;
+}
+
+.classD {
+  color: blue;
+  font-style: italic;
+}
+
+.classE {
+  color: orange;
 }
