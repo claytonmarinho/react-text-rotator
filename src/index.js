@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Transition } from "react-transition-group";
+import Transition from "react-transition-group/Transition";
 import useRotator from "./useRotator";
 import transitions from "./transitions";
 
@@ -14,23 +14,24 @@ const TextRotator = ({ content, time, startDelay, transitionTime }) => {
     time,
   });
 
-  const { className, animation, text } = currentItemContent;
-
-  if (!text) {
-    return <span />;
-  }
+  const { className = "", animation = "fade", text } = currentItemContent || {};
 
   return (
     <Transition in={isEntered} timeout={transitionTime}>
       {(state) => {
-        const spanStyle = {
+        if (!currentItemContent || !text) {
+          return <></>;
+        }
+
+        const style = {
           ...styles[`${animation}-default`],
           ...styles[`${animation}-${state}`],
         };
+
         return (
-          <span key={indexRef} className={className} style={spanStyle}>
+          <div key={indexRef} className={className} style={style}>
             {text}
-          </span>
+          </div>
         );
       }}
     </Transition>
@@ -42,10 +43,6 @@ const ContentItem = PropTypes.shape({
   className: PropTypes.string,
   animation: PropTypes.string,
 });
-
-ContentItem.defaultProps = {
-  animation: "fade",
-};
 
 TextRotator.propTypes = {
   time: PropTypes.number,

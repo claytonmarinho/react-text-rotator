@@ -3,7 +3,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 export default ({ content, transitionTime, startDelay, time }) => {
   let itemInterval;
   let itemTimeout;
-  let isEnteredTimeout;
+  let displayTimeout;
 
   const indexRef = useRef(0);
   const [isEntered, setEntered] = useState(false);
@@ -11,30 +11,30 @@ export default ({ content, transitionTime, startDelay, time }) => {
   useEffect(() => {
     itemTimeout = setTimeout(() => {
       next();
-      itemInterval = setInterval(next, time);
+      itemInterval = setInterval(next, time + transitionTime * 2);
     }, startDelay);
 
     return () =>
       clearTimeout(itemTimeout) &&
       clearInterval(itemInterval) &&
-      clearTimeout(isEnteredTimeout);
+      clearTimeout(displayTimeout);
   }, [content]);
 
   const next = useCallback(() => {
-    const nextItemIndex = indexRef.current + 1;
-    const nextItemContent = content[nextItemIndex];
+    const itemIndex = indexRef.current;
+    const itemContent = content[itemIndex];
 
-    indexRef.current = nextItemContent ? nextItemIndex : 0;
+    indexRef.current = itemContent ? itemIndex : 0;
 
     setEntered(true);
 
-    isEnteredTimeout = setTimeout(
-      () => setEntered(false),
-      time - transitionTime
-    );
+    displayTimeout = setTimeout(() => {
+      setEntered(false);
+      indexRef.current = indexRef.current + 1;
+    }, time);
   }, [content]);
 
-  const currentItemContent = content[indexRef.current] || {};
+  const currentItemContent = content[indexRef.current];
 
   return {
     isEntered,
