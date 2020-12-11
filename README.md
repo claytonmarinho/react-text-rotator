@@ -15,8 +15,7 @@ Simple React component for rotating text.
 [coveralls-badge]: https://img.shields.io/coveralls/claytonmarinho/react-text-rotator/master.png?style=flat-square
 [coveralls]: https://coveralls.io/github/claytonmarinho/react-text-rotator
 
-[See the demo](https://claytonmarinho.github.io/react-text-rotator/).
-
+[See the demo](https://claytonmarinho.github.io/react-text-rotator/) | [Try on Codepen](https://codepen.io/claytonmarinho/pen/gOwLgNR)
 
 Getting Start
 -----------
@@ -35,29 +34,29 @@ import ReactTextRotator from 'react-text-rotator';
 
 const content = [
   {
-    text: 'We shall fight on the beaches.',
-    className: 'classA',
-    animation: 'fade',
+    text: "We shall fight on the beaches.",
+    className: "classA",
+    animation: "fade",
   },
   {
-    text: 'We shall fight on the landing grounds.',
-    className: 'classB',
-    animation: 'fade',
+    text: "We shall fight on the landing grounds.",
+    className: "classB",
+    animation: "zoom",
   },
   {
-    text: 'We shall fight in the fields and in the streets.',
-    className: 'classC',
-    animation: 'fade',
+    text: "We shall fight in the fields and in the streets.",
+    className: "classC",
+    animation: "fade",
   },
   {
-    text: 'We shall fight in the hills.',
-    className: 'classD',
-    animation: 'fade',
+    text: "We shall fight in the hills.",
+    className: "classD",
+    animation: "squeeze",
   },
   {
-    text: 'We shall never surrender...',
-    className: 'classE',
-    animation: 'fade',
+    text: "We shall never surrender...",
+    className: "classE",
+    animation: "zoom",
   },
 ];
 
@@ -90,7 +89,7 @@ Content shape
 | --- | --- | --- | --- | --- |
 | text | String | True | | Text to be shown
 | className | String | False | | Class name for each span
-| animation | String | False | 'fade' | Pre-defined animation for the content (only fade is available)
+| animation | String | False | 'fade' |  'fade', 'zoom' or 'squeeze' 
 
 
 Development

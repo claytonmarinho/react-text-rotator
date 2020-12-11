@@ -26,6 +26,10 @@ body {
   margin-top: 50px;
 }
 
+.code-pen {
+  padding: 40px;
+}
+
 .example {
   padding: 50px;
   font-size: 40px;
