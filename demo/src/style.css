@@ -1,13 +1,14 @@
-
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
-html, body, #demo {
+html,
+body,
+#demo {
   height: 100%;
   margin: 0;
 }
 
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 #demo {
@@ -20,17 +21,22 @@ body {
   margin: auto;
 }
 
-#demo .wrapper span {
-  font-size: 40px;
-}
-
 .github-buttons {
   width: 100%;
   margin-top: 50px;
 }
 
+.code-pen {
+  padding: 40px;
+}
+
+.example {
+  padding: 50px;
+  font-size: 40px;
+}
+
 .classA {
-  color: red; 
+  color: red;
 }
 
 .classB {
@@ -39,11 +45,11 @@ body {
 }
 
 .classC {
-  color: purple; 
+  color: purple;
 }
 
 .classD {
-  color: blue; 
+  color: blue;
   font-style: italic;
 }
 

@@ -1,7 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-module.exports = (env) => ({
+module.exports = () => ({
   entry: path.resolve(process.cwd(), "demo/src/index.js"),
   target: "web",
   module: {
@@ -18,19 +18,7 @@ module.exports = (env) => ({
       },
       {
         test: /\.css$/i,
-        use: [
-          {
-            loader: "style-loader",
-          },
-          {
-            loader: "file-loader",
-            options: {
-              name: "[name].[ext]",
-              publicPath: "css",
-              esModule: false,
-            },
-          },
-        ],
+        use: ["style-loader", "css-loader"],
       },
     ],
   },

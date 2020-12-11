@@ -2,7 +2,7 @@ const path = require("path");
 
 module.exports = (env) => ({
   entry: path.resolve(process.cwd(), "src/index.js"),
-  target: "node",
+  target: "web",
   devtool: env.env === "dev" ? "inline-source-map" : undefined,
   mode: env.env === "dev" ? "development" : "production",
   module: {
