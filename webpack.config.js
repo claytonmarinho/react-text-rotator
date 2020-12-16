@@ -2,9 +2,10 @@ const path = require("path");
 
 module.exports = (env) => ({
   entry: path.resolve(process.cwd(), "src/index.js"),
-  target: "web",
+  target: "node",
   devtool: env.env === "dev" ? "inline-source-map" : undefined,
   mode: env.env === "dev" ? "development" : "production",
+  externals: ["react", "react-dom", "react-transition-group", "prop-types"],
   module: {
     rules: [
       {
@@ -34,5 +35,6 @@ module.exports = (env) => ({
   output: {
     path: path.resolve(process.cwd(), "lib"),
     filename: "index.js",
+    libraryTarget: "umd",
   },
 });
