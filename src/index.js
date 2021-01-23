@@ -14,7 +14,7 @@ const TextRotator = ({ content, time, startDelay, transitionTime }) => {
     time,
   });
 
-  const { className = "", animation = "fade", text } = currentItemContent || {};
+  const { className = "", animation = "fade", text, link } = currentItemContent || {};
 
   return (
     <Transition in={isEntered} timeout={transitionTime}>
@@ -28,11 +28,19 @@ const TextRotator = ({ content, time, startDelay, transitionTime }) => {
           ...styles[`${animation}-${state}`],
         };
 
-        return (
-          <div key={indexRef} className={className} style={style}>
-            {text}
-          </div>
-        );
+        if (link) {
+          return (
+            <div key={indexRef} className={className} style={style}>
+              <a href={link}>{text}</a>
+            </div>
+          )
+        } else {
+          return (
+            <div key={indexRef} className={className} style={style}>
+              {text}
+            </div>
+          )
+        }
       }}
     </Transition>
   );
@@ -42,6 +50,7 @@ const ContentItem = PropTypes.shape({
   text: PropTypes.string.isRequired,
   className: PropTypes.string,
   animation: PropTypes.string,
+  link: PropTypes.string,
 });
 
 TextRotator.propTypes = {
