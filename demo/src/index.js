@@ -31,7 +31,7 @@ const content = [
     text: "We shall never surrender...",
     className: "classE",
     animation: "zoom",
-    link: "https://example.org/",
+    link: "https://google.com/",
   },
 ];
 

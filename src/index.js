@@ -28,19 +28,12 @@ const TextRotator = ({ content, time, startDelay, transitionTime }) => {
           ...styles[`${animation}-${state}`],
         };
 
-        if (link) {
-          return (
-            <div key={indexRef} className={className} style={style}>
-              <a href={link}>{text}</a>
-            </div>
-          )
-        } else {
-          return (
-            <div key={indexRef} className={className} style={style}>
-              {text}
-            </div>
-          )
-        }
+        return (
+          <div key={indexRef} className={className} style={style}>
+            {link ? <a href={link}>{text}</a> : text}
+          </div>
+        )
+
       }}
     </Transition>
   );
