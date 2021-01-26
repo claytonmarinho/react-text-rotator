@@ -71,4 +71,24 @@ describe("basic tests", () => {
 
     expect(component).toContain("");
   });
+
+  it("accepts hyperlinks as optional content item property", () => {
+    const props = {
+      content: [
+        {
+          text: "text a",
+          link: "https://example.com"
+        },
+      ],
+      time: 5000,
+      startDelay: 0,
+    };
+
+    const component = render(<ReactTextRotator {...props} />);
+
+    expect(component).toContain(
+      '<div class="" style="transition:opacity 500ms ease-in;opacity:0"><a href="https://example.com">text a</a></div>'
+    );
+  });
+
 });

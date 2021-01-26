@@ -15,6 +15,7 @@ const content = [
     text: "We shall fight on the landing grounds.",
     className: "classB",
     animation: "zoom",
+    link: "https://example.com/",
   },
   {
     text: "We shall fight in the fields and in the streets.",
@@ -30,6 +31,7 @@ const content = [
     text: "We shall never surrender...",
     className: "classE",
     animation: "zoom",
+    link: "https://google.com/",
   },
 ];
 
