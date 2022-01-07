@@ -69,7 +69,7 @@ const MyComponent = () => (
 
 | Name           | Type   | Required | Default | Obs                                          |
 | -------------- | ------ | -------- | ------- | -------------------------------------------- |
-| content        | Array  | True     |         | Array of content shape (see bellow)          |
+| content        | Array  | True     |         | Array of content shape (see below)          |
 | time           | Number | False    | 2500    | Time in milliseconds                         |
 | startDelay     | Number | False    | 250     | Wait before the first content (milliseconds) |
 | transitionTime | Number | False    | 500     | Time in milliseconds                         |
