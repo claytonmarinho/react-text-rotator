@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack serve --config ./webpack.config.js --mode=development",
     "build": "rm -rf ./dist && webpack --config ./webpack.config.js --mode=production",
-    "deploy": "npm run build && gh-pages -d demo/dist"
+    "deploy": "npm run build && gh-pages -d ./dist"
   },
   "license": "ISC",
   "devDependencies": {
