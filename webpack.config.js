@@ -1,10 +1,9 @@
 const path = require("path");
 
-module.exports = (env) => ({
-  entry: path.resolve(process.cwd(), "src/index.js"),
+module.exports = {
+  entry: path.join(__dirname, "src", "index.js"),
   target: "node",
-  devtool: env.env === "dev" ? "inline-source-map" : undefined,
-  mode: env.env === "dev" ? "development" : "production",
+  mode: "production",
   externals: ["react", "react-dom", "react-transition-group", "prop-types"],
   module: {
     rules: [
@@ -30,11 +29,11 @@ module.exports = (env) => ({
   },
   resolve: {
     extensions: [".js"],
-    modules: ["node_modules"],
+    modules: [path.join(__dirname, "node_modules")],
   },
   output: {
-    path: path.resolve(process.cwd(), "lib"),
+    path: path.join(__dirname, "lib"),
     filename: "index.js",
     libraryTarget: "umd",
   },
-});
+};
