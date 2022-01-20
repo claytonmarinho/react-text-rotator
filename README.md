@@ -69,7 +69,7 @@ const MyComponent = () => (
 
 | Name           | Type   | Required | Default | Obs                                          |
 | -------------- | ------ | -------- | ------- | -------------------------------------------- |
-| content        | Array  | True     |         | Array of content shape (see below)          |
+| content        | Array  | True     |         | Array of content shape (see below)           |
 | time           | Number | False    | 2500    | Time in milliseconds                         |
 | startDelay     | Number | False    | 250     | Wait before the first content (milliseconds) |
 | transitionTime | Number | False    | 500     | Time in milliseconds                         |
@@ -93,7 +93,7 @@ Content shape
 
 ### Demo Development Server
 
-- `npm start` will run a development server with the component's demo app at [http://localhost:3000](http://localhost:3000) with hot module reloading.
+- `cd demo; npm start` will run a development server with the component's demo app at [http://localhost:3000](http://localhost:3000) with hot module reloading.
 
 ### Running Tests
 
