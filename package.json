@@ -1,37 +1,34 @@
 {
   "name": "react-text-rotator",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Simple React component for rotating text",
   "main": "lib/index.js",
   "scripts": {
     "build": "webpack --config webpack.config.js --env prod",
-    "start": "webpack serve --config ./demo/webpack.config.js --mode=development",
-    "demo:build": "rm -rf ./demo/dist && webpack --config ./demo/webpack.config.js",
-    "demo:deploy": "npm run demo:build && gh-pages -d demo/dist",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "test": "jest"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.10",
-    "@babel/plugin-transform-runtime": "^7.12.10",
-    "@babel/polyfill": "^7.12.1",
-    "@babel/preset-env": "^7.12.11",
-    "@babel/preset-react": "^7.12.10",
-    "babel-loader": "^8.2.2",
-    "css-loader": "^5.0.1",
-    "eslint": "^7.15.0",
-    "eslint-plugin-jest": "^24.1.3",
-    "eslint-plugin-react": "^7.21.5",
-    "eslint-plugin-react-hooks": "^4.2.0",
-    "gh-pages": "^3.1.0",
-    "html-webpack-plugin": "^4.5.0",
-    "jest": "^26.6.3",
-    "style-loader": "^2.0.0",
-    "webpack": "^5.10.3",
-    "webpack-cli": "^4.2.0",
-    "webpack-dev-server": "^3.11.0"
+    "@babel/plugin-transform-runtime": "^7.16.10",
+    "@babel/preset-env": "^7.16.10",
+    "@babel/preset-react": "^7.16.7",
+    "babel-jest": "^27.4.6",
+    "babel-loader": "^8.2.3",
+    "eslint": "^8.7.0",
+    "eslint-plugin-jest": "^25.7.0",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "jest": "^27.4.7",
+    "webpack": "^5.66.0",
+    "webpack-cli": "^4.9.1"
   },
+  "peerDependencies": {
+    "react-transition-group": "4.x"
+  },
+  "files": [
+    "./lib"
+  ],
   "author": "Clayton Marinho <claytonmarinho@gmail.com>",
   "homepage": "https://claytonmarinho.github.io/react-text-rotator/",
   "license": "MIT",
@@ -41,17 +38,5 @@
     "component",
     "text",
     "rotator"
-  ],
-  "dependencies": {
-    "prop-types": "^15.7.2",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-transition-group": "^4.4.1"
-  },
-  "peerDependencies": {
-    "prop-types": "^15.7.2",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-transition-group": "^4.4.1"
-  }
+  ]
 }

@@ -1,8 +1,10 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
+const distPath = path.join(__dirname, "dist");
+
 module.exports = () => ({
-  entry: path.resolve(process.cwd(), "demo/src/index.js"),
+  entry: path.join(__dirname, "src", "index.js"),
   target: "web",
   module: {
     rules: [
@@ -23,13 +25,14 @@ module.exports = () => ({
     ],
   },
   output: {
-    path: path.resolve(process.cwd(), "demo/dist"),
+    path: distPath,
     filename: "index.js",
   },
-  plugins: [new HtmlWebpackPlugin({ template: "./demo/src/index.html" })],
+  plugins: [new HtmlWebpackPlugin({ template: "./src/index.html" })],
+  resolve: {
+    modules: [path.join(__dirname, "node_modules")],
+  },
   devServer: {
-    contentBase: path.join(__dirname, "demo/dist"),
-    hot: true,
-    port: 3000,
+    static: distPath,
   },
 });

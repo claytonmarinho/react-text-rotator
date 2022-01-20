@@ -1,8 +1,7 @@
-import "@babel/polyfill";
-
 import React from "react";
 import ReactDOM from "react-dom";
-import ReactTextRotator from "../../src";
+// import ReactTextRotator from "../../src";
+import ReactTextRotator from "react-text-rotator";
 import "./style.css";
 
 const content = [
