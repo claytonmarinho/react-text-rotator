@@ -56,13 +56,11 @@ export default function useRotator({
     setCurrentIndex(0);
     setIsEntered(false);
 
-    if (!autoPlay || content.length === 0) {
-      return;
+    if (autoPlay && content.length > 0) {
+      startTimerRef.current = setTimeout(() => {
+        enterCurrent();
+      }, startDelay);
     }
-
-    startTimerRef.current = setTimeout(() => {
-      enterCurrent();
-    }, startDelay);
 
     return clearAllTimers;
   }, [content, autoPlay, startDelay, enterCurrent, clearAllTimers]);
