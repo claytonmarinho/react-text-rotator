@@ -8,7 +8,7 @@
 
 ## Demo Development Server
 
-- `npm start` will run a development server with the component's demo app at [http://localhost:3000](http://localhost:3000) with hot module reloading.
+- `cd demo && npm start` will run a development server with the component's demo app at [http://localhost:3000](http://localhost:3000) with hot module reloading.
 
 ## Running Tests
 
@@ -20,6 +20,6 @@
 
 ## Building
 
-- `npm run build` will build the component for publishing to npm and also bundle the demo app.
+- `npm run build` will build the component for publishing to npm (emits `lib/index.js`).
 
-- `npm run clean` will delete built resources.
+- To build the demo app, run `cd demo && npm run build`.

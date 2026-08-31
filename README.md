@@ -105,6 +105,6 @@ Content shape
 
 ### Building
 
-- `npm run build` will build the component for publishing to npm and also bundle the demo app.
+- `npm run build` will build the component for publishing to npm (emits `lib/index.js`).
 
-- `npm run clean` will delete built resources.
+- To build the demo app, run `cd demo && npm run build`.
