@@ -82,10 +82,10 @@ describe("TextRotator", () => {
 
       // Each advance is its own `act` so the intermediate enter/exit state
       // commits (React batches everything inside a single `act`, which would
-      // swallow the enter and never advance the item). This test cannot pass
-      // on React 19 as written: react-transition-group v4 calls
-      // `ReactDOM.findDOMNode` during a transition, and React 19 removed it,
-      // so the first enter transition throws "findDOMNode is not a function".
+      // swallow the enter and never advance the item). Rotation is driven by
+      // react-transition-group's `onExited`; the `<Transition>` receives a
+      // `nodeRef` because React 19 removed `ReactDOM.findDOMNode`, which
+      // react-transition-group v4 otherwise calls during a transition.
       act(() => {
         jest.advanceTimersByTime(0);
       });

@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import Transition from "react-transition-group/Transition";
 import useRotator from "./useRotator";
 import transitions from "./transitions";
@@ -24,6 +25,7 @@ const TextRotator = ({
     autoPlay,
     onItemChange,
   });
+  const nodeRef = useRef<HTMLDivElement | null>(null);
 
   if (currentItem == null) {
     return null;
@@ -42,7 +44,7 @@ const TextRotator = ({
   } = item;
 
   return (
-    <Transition in={isEntered} timeout={transitionTime} onExited={next}>
+    <Transition in={isEntered} timeout={transitionTime} onExited={next} nodeRef={nodeRef}>
       {(state) => {
         const mergedStyle = {
           ...styles[`${animation}-default`],
@@ -67,7 +69,7 @@ const TextRotator = ({
         }
 
         return (
-          <div className={`${className} ${itemClassName}`.trim()} style={mergedStyle}>
+          <div ref={nodeRef} className={`${className} ${itemClassName}`.trim()} style={mergedStyle}>
             {inner}
           </div>
         );
