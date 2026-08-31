@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import Transition from "react-transition-group/Transition";
+import { Transition } from "react-transition-group";
 import useRotator from "./useRotator";
 import transitions from "./transitions";
 import type { RotatorItem, TextRotatorProps } from "./types";
