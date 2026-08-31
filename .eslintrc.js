@@ -1,27 +1,25 @@
 module.exports = {
-  env: {
-    browser: true,
-    es2021: true,
-    node: true,
+  root: true,
+  env: { browser: true, es2021: true, node: true, jest: true },
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    ecmaVersion: 2021,
+    sourceType: "module",
+    ecmaFeatures: { jsx: true },
   },
+  settings: { react: { version: "detect" } },
   extends: [
     "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:jest/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:@typescript-eslint/recommended",
   ],
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
-    ecmaVersion: 12,
-    sourceType: "module",
-  },
-  plugins: ["react", "jest"],
+  plugins: ["react", "react-hooks", "@typescript-eslint"],
   rules: {
-    "jest/no-disabled-tests": "warn",
-    "jest/no-focused-tests": "error",
-    "jest/no-identical-title": "error",
-    "jest/prefer-to-have-length": "warn",
-    "jest/valid-expect": "error",
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
+    "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
+    "@typescript-eslint/explicit-module-boundary-types": "off",
   },
+  ignorePatterns: ["lib", "dist", "demo", "coverage", "node_modules"],
 };
