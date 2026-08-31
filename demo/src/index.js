@@ -1,7 +1,9 @@
 import React from "react";
-import ReactDOM from "react-dom";
-// import ReactTextRotator from "../../src";
-import ReactTextRotator from "react-text-rotator";
+import { createRoot } from "react-dom/client";
+// The library's ESM build (dist/index.mjs) imports "react-transition-group/Transition",
+// an extension-less subpath package. webpack 5.66's strict-ESM resolution rejects that
+// request, so consume the CJS build (dist/index.js) via the package's `require` export.
+const { default: ReactTextRotator } = require("react-text-rotator");
 import "./style.css";
 
 const content = [
@@ -34,12 +36,43 @@ const content = [
   },
 ];
 
+const richContent = [
+  {
+    children: (
+      <span>
+        Rich content with <b>bold</b> and <i>italic</i> text.
+      </span>
+    ),
+    className: "classA",
+    animation: "fade",
+  },
+  {
+    render: (item, index) => (
+      <span>
+        Item {index + 1} rendered via the <code>render</code> callback.
+      </span>
+    ),
+    className: "classC",
+    animation: "zoom",
+  },
+  {
+    text: "Plain linked text still works.",
+    className: "classE",
+    animation: "squeeze",
+    link: "https://github.com/claytonmarinho/react-text-rotator",
+  },
+];
+
 const App = () => {
   return (
     <div className="wrapper">
       <h1>React Text Rotator</h1>
       <div className="example">
         <ReactTextRotator content={content} time={5000} startDelay={500} />
+      </div>
+      <div className="example">
+        <h2>Rich content</h2>
+        <ReactTextRotator content={richContent} time={4000} startDelay={500} />
       </div>
       <div className="github-buttons">
         <iframe
@@ -70,4 +103,4 @@ const App = () => {
   );
 };
 
-ReactDOM.render(<App />, document.querySelector("#demo"));
+createRoot(document.querySelector("#demo")).render(<App />);
