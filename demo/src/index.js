@@ -1,9 +1,6 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-// The library's ESM build (dist/index.mjs) imports "react-transition-group/Transition",
-// an extension-less subpath package. webpack 5.66's strict-ESM resolution rejects that
-// request, so consume the CJS build (dist/index.js) via the package's `require` export.
-const { default: ReactTextRotator } = require("react-text-rotator");
+import ReactTextRotator from "react-text-rotator";
 import "./style.css";
 
 const content = [
