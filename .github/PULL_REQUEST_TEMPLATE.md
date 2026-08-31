@@ -11,8 +11,5 @@ Closes # (issue number)
 - [ ] Documentation update
 
 ## Checklist
-- [ ] Code follows project conventions defined in `AGENTS.md`
-- [ ] TypeScript types compiled without errors (`npm run typecheck`)
 - [ ] Unit tests added/updated and passing (`npm test`)
-- [ ] `react-doctor` audit executed with clean report (`npm run doctor`)
 - [ ] Demo app updated/verified if applicable (`cd demo && npm start`)

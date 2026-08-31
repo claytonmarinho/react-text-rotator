@@ -40,7 +40,7 @@ Source lives entirely in `src/` (three files):
 
 Key relationships worth knowing:
 
-- The `key={indexRef}` on the rendered `<div>` forces React to remount the node each time the index changes, which is what re-triggers the `<Transition>` enter/exit cycle.
+- The `<Transition in={isEntered}>` component re-triggers the enter/exit cycle via changes to the `isEntered` state managed by `useRotator`. Note that `key={indexRef}` receives a stable `useRef` object reference, so it does not cause DOM node remounting when `indexRef.current` advances.
 - `react-transition-group` is the only declared `peerDependency` (v4.x). `react`, `react-dom`, and `prop-types` are imported but only listed as webpack `externals`, not as peer deps — add them if you change the public API surface.
 - The build (`webpack.config.js`) externals `react`, `react-dom`, `react-transition-group`, and `prop-types`, targets `node`, and outputs UMD to `lib/index.js` (the package's `main`).
 - Tests (`tests/basic.js`) render with `react-dom/server`'s `renderToStaticMarkup` and assert on the generated HTML string — no DOM/jsdom is used. Jest transforms JS via `jest.transform.js` (babel-jest with `@babel/env` + `@babel/preset-react`).
