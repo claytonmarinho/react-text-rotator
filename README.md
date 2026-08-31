@@ -65,23 +65,63 @@ const MyComponent = () => (
 );
 ```
 
+### Usage (TypeScript)
+
+The component is written in TypeScript and ships its own types. The default import is unchanged.
+
+```tsx
+import TextRotator, { type RotatorItem } from "react-text-rotator";
+
+const content: Array<string | RotatorItem> = [
+  "We shall fight on the beaches.",
+  {
+    text: "We shall fight on the landing grounds.",
+    className: "classB",
+    animation: "zoom",
+    link: "https://example.com/",
+  },
+  {
+    children: <span>Rich <b>content</b></span>,
+  },
+];
+
+const MyComponent = () => (
+  <div>
+    <h1>Churchill Speech</h1>
+    <TextRotator content={content} time={5000} startDelay={2000} />
+  </div>
+);
+```
+
+Each entry in `content` is either a plain string (rendered as text) or a `RotatorItem` shape (see below).
+
 ## Props
 
-| Name           | Type   | Required | Default | Obs                                          |
-| -------------- | ------ | -------- | ------- | -------------------------------------------- |
-| content        | Array  | True     |         | Array of content shape (see below)           |
-| time           | Number | False    | 2500    | Time in milliseconds                         |
-| startDelay     | Number | False    | 250     | Wait before the first content (milliseconds) |
-| transitionTime | Number | False    | 500     | Time in milliseconds                         |
+| Name           | Type                     | Required | Default | Obs                                                                |
+| -------------- | ------------------------ | -------- | ------- | ------------------------------------------------------------------ |
+| content        | Array<string \| RotatorItem> | True   |         | Array of strings or content shapes (see below)                     |
+| time           | Number                   | False    | 2500    | Time each item is shown, in milliseconds                            |
+| startDelay     | Number                   | False    | 250     | Wait before the first content (milliseconds)                        |
+| transitionTime | Number                   | False    | 500     | CSS transition duration, in milliseconds                            |
+| className      | String                   | False    | ''      | Class applied to the wrapper div (merged with each item's className) |
+| style          | Object                   | False    |         | Inline styles merged under the animation styles (per-item style wins) |
+| autoPlay       | Boolean                  | False    | true    | Start rotating automatically; when false, the first item renders without advancing |
+| onItemChange   | Function                 | False    |         | Called with `(item, index)` whenever the current item changes       |
 
 Content shape
 
-| Name      | Type   | Required | Default | Obs                         |
-| --------- | ------ | -------- | ------- | --------------------------- |
-| text      | String | True     |         | Text to be shown            |
-| className | String | False    |         | Class name for each span    |
-| animation | String | False    | 'fade'  | 'fade', 'zoom' or 'squeeze' |
-| link      | String | False    |         | Optional hyperlink for text |
+| Name      | Type     | Required | Default | Obs                                                           |
+| --------- | -------- | -------- | ------- | ------------------------------------------------------------- |
+| text      | String   | False    |         | Text to be shown (not needed when using `children`/`render`/`link`) |
+| className | String   | False    |         | Class name for the wrapper div                                |
+| animation | String   | False    | 'fade'  | 'fade', 'zoom' or 'squeeze'                                   |
+| link      | String   | False    |         | Optional hyperlink for text                                   |
+| target    | String   | False    |         | Anchor `target` attribute when `link` is set                  |
+| style     | Object   | False    |         | Per-item inline styles (win over the container `style` and the animation styles) |
+| children  | ReactNode| False    |         | Rich content rendered directly (takes precedence over `link`/`text`) |
+| render    | Function | False    |         | `(item, index) => ReactNode`; highest-precedence renderer     |
+
+Render precedence (highest first): `render` → `children` → `link` → `text`.
 
 ## Development
 
@@ -105,6 +145,6 @@ Content shape
 
 ### Building
 
-- `npm run build` will build the component for publishing to npm (emits `lib/index.js`).
+- `npm run build` will build the component for publishing to npm (emits `dist/index.js` for CommonJS, `dist/index.mjs` for ESM, and `dist/index.d.ts` for types).
 
 - To build the demo app, run `cd demo && npm run build`.
