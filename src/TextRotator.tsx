@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, type ReactNode } from "react";
 import { Transition } from "react-transition-group";
 import useRotator from "./useRotator";
 import transitions from "./transitions";
@@ -53,7 +53,7 @@ const TextRotator = ({
           ...itemStyle,
         };
 
-        let inner;
+        let inner: ReactNode;
         if (render) {
           inner = render(item, currentIndex);
         } else if (children !== undefined && children !== null) {

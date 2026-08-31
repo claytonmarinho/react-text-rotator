@@ -66,7 +66,7 @@ export default function useRotator({
   }, [content, autoPlay, startDelay, enterCurrent, clearDisplayTimer]);
 
   useEffect(() => {
-    if (onItemChange && content.length > 0) {
+    if (onItemChange && currentIndex < content.length) {
       onItemChange(content[currentIndex], currentIndex);
     }
   }, [currentIndex, content, onItemChange]);
