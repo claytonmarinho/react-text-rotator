@@ -1,6 +1,6 @@
 ## Prerequisites
 
-[Node.js](http://nodejs.org/) >= v4 must be installed.
+[Node.js](http://nodejs.org/) >= 18 must be installed.
 
 ## Installation
 
@@ -20,6 +20,6 @@
 
 ## Building
 
-- `npm run build` will build the component for publishing to npm (emits `lib/index.js`).
+- `npm run build` will build the component for publishing to npm (tsup + TypeScript; emits `dist/index.js` for CommonJS, `dist/index.mjs` for ESM, and `dist/index.d.ts` for types).
 
 - To build the demo app, run `cd demo && npm run build`.
