@@ -172,7 +172,7 @@ Adicionado listener no `document` para pausar a rotação quando a página/aba f
 
 ---
 
-## 6. Fonte Única de Instruções para Agentes de IA (`AGENTS.md`)
+## 6. Fonte Única de Instruções para Agentes & Templates GitHub
 
 ### 6.1 Estrutura do `AGENTS.md`
 O arquivo `AGENTS.md` na raiz do projeto conterá:
@@ -188,8 +188,13 @@ O arquivo `AGENTS.md` na raiz do projeto conterá:
    * `COPILOT.md` -> Aponta para `AGENTS.md`
    * `AGY.md` -> Aponta para `AGENTS.md`
 
-### 6.2 Resolução do PR #59
-O PR #59 (`docs/claude-md`) será atualizado com a adição do `AGENTS.md` como arquivo canônico e os arquivos ponteiros apontando para ele.
+### 6.2 Templates Padrão do GitHub (`.github/`)
+* **Bug Report**: `.github/ISSUE_TEMPLATE/bug_report.md` para reportes estruturados de bugs com código de reprodução e versão do React.
+* **Feature Request**: `.github/ISSUE_TEMPLATE/feature_request.md` para proposição de novas funcionalidades.
+* **Pull Request**: `.github/PULL_REQUEST_TEMPLATE.md` com checklist obrigatório (`AGENTS.md`, `typecheck`, `test`, `react-doctor`).
+
+### 6.3 Resolução do PR #59
+O PR #59 (`docs/claude-md`) será atualizado com a adição do `AGENTS.md` como arquivo canônico, os arquivos ponteiros e os templates do GitHub.
 
 ---
 

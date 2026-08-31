@@ -53,7 +53,7 @@ git commit -m "chore: setup tsup, typescript, and react-doctor tooling for v2.0.
 
 ---
 
-### Task 2: Unified AI Agent Instructions (`AGENTS.md` and Pointers)
+### Task 2: Unified AI Agent Instructions & GitHub Templates
 
 **Files:**
 - Create: `AGENTS.md`
@@ -61,10 +61,13 @@ git commit -m "chore: setup tsup, typescript, and react-doctor tooling for v2.0.
 - Create: `OPENCODE.md`
 - Create: `COPILOT.md`
 - Create: `AGY.md`
+- Create: `.github/ISSUE_TEMPLATE/bug_report.md`
+- Create: `.github/ISSUE_TEMPLATE/feature_request.md`
+- Create: `.github/PULL_REQUEST_TEMPLATE.md`
 
 **Interfaces:**
 - Consumes: Developer workflow & tooling commands from Task 1
-- Produces: Unified agent instructions document and pointer files for all AI tools.
+- Produces: Unified agent instructions document, pointer files, and GitHub issue/PR templates.
 
 - [ ] **Step 1: Create AGENTS.md**
 
@@ -78,11 +81,15 @@ Write pointer markdown files pointing to `AGENTS.md` using the format:
 See [AGENTS.md](./AGENTS.md) for full project instructions, developer commands, architecture, and coding standards.
 ```
 
-- [ ] **Step 3: Commit AI agent instructions**
+- [ ] **Step 3: Create GitHub templates**
+
+Create `.github/ISSUE_TEMPLATE/bug_report.md`, `.github/ISSUE_TEMPLATE/feature_request.md`, and `.github/PULL_REQUEST_TEMPLATE.md`.
+
+- [ ] **Step 4: Commit AI agent instructions & GitHub templates**
 
 ```bash
-git add AGENTS.md CLAUDE.md OPENCODE.md COPILOT.md AGY.md
-git commit -m "docs: add unified AGENTS.md canonical instructions and pointer files"
+git add AGENTS.md CLAUDE.md OPENCODE.md COPILOT.md AGY.md .github/
+git commit -m "docs: add unified AGENTS.md canonical instructions, pointers, and GitHub templates"
 ```
 
 ---
