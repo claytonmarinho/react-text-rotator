@@ -1,9 +1,10 @@
 module.exports = {
   clearMocks: true,
   coverageDirectory: "coverage",
-  testMatch: ["**/tests/**/*.[jt]s?(x)"],
+  testEnvironment: "jsdom",
+  testMatch: ["**/tests/**/*.test.[jt]s?(x)"],
   testPathIgnorePatterns: ["/node_modules/"],
   transform: {
-    "^.+\\.js$": "./jest.transform.js",
+    "^.+\\.(ts|tsx)$": ["ts-jest", { tsconfig: "tsconfig.json" }],
   },
 };

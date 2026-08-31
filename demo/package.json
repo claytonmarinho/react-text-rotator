@@ -25,6 +25,9 @@
     "webpack-dev-server": "^4.7.3"
   },
   "dependencies": {
-    "react-text-rotator": "^1.2.0"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-text-rotator": "file:..",
+    "react-transition-group": "^4.4.0"
   }
 }
