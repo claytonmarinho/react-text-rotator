@@ -12,14 +12,9 @@ export default function useRotator({
   const [isEntered, setIsEntered] = useState(false);
 
   const indexRef = useRef(0);
-  const startTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const displayTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const clearAllTimers = useCallback(() => {
-    if (startTimerRef.current) {
-      clearTimeout(startTimerRef.current);
-      startTimerRef.current = null;
-    }
+  const clearDisplayTimer = useCallback(() => {
     if (displayTimerRef.current) {
       clearTimeout(displayTimerRef.current);
       displayTimerRef.current = null;
@@ -27,13 +22,11 @@ export default function useRotator({
   }, []);
 
   const scheduleExit = useCallback(() => {
-    if (displayTimerRef.current) {
-      clearTimeout(displayTimerRef.current);
-    }
+    clearDisplayTimer();
     displayTimerRef.current = setTimeout(() => {
       setIsEntered(false);
     }, time);
-  }, [time]);
+  }, [time, clearDisplayTimer]);
 
   const enterCurrent = useCallback(() => {
     setIsEntered(true);
@@ -51,19 +44,26 @@ export default function useRotator({
   }, [content.length, enterCurrent]);
 
   useEffect(() => {
-    clearAllTimers();
+    clearDisplayTimer();
     indexRef.current = 0;
     setCurrentIndex(0);
     setIsEntered(false);
 
+    let startTimer: ReturnType<typeof setTimeout> | null = null;
+
     if (autoPlay && content.length > 0) {
-      startTimerRef.current = setTimeout(() => {
+      startTimer = setTimeout(() => {
         enterCurrent();
       }, startDelay);
     }
 
-    return clearAllTimers;
-  }, [content, autoPlay, startDelay, enterCurrent, clearAllTimers]);
+    return () => {
+      if (startTimer) {
+        clearTimeout(startTimer);
+      }
+      clearDisplayTimer();
+    };
+  }, [content, autoPlay, startDelay, enterCurrent, clearDisplayTimer]);
 
   useEffect(() => {
     if (onItemChange && content.length > 0) {
