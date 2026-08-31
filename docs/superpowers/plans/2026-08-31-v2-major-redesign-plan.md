@@ -144,12 +144,15 @@
 ### Task 2: TypeScript Types + Timer-Safe `useRotator` Hook (TDD)
 
 **Files:**
+- Delete: `src/index.js`, `src/useRotator.js`, `src/transitions.js`, `tests/basic.js`
 - Create: `src/types.ts`, `src/useRotator.ts`
 - Create test: `tests/useRotator.test.ts`
 
 **Interfaces:** `useRotator` consumes `UseRotatorOptions` and returns `UseRotatorReturn` (both from `src/types.ts`).
 
-- [ ] **Step 1: Create `src/types.ts`** with exactly these interfaces (import types from `react`):
+- [ ] **Step 1: Delete the old JS sources** `src/index.js`, `src/useRotator.js`, `src/transitions.js`, and the old test `tests/basic.js`. (Jest resolves `.js` before `.ts`, so these MUST be gone before the new `.ts` files land — otherwise `import "../src/useRotator"` would resolve to the old `.js` and throw a SyntaxError. The package has no `src/index` entry until Task 3 creates `src/index.ts`; that is expected.)
+
+- [ ] **Step 2: Create `src/types.ts`** with exactly these interfaces (import types from `react`):
   ```ts
   import type { CSSProperties, ReactNode } from "react";
 
@@ -192,9 +195,9 @@
   ```
   Note: `transitionTime` is intentionally NOT in `UseRotatorOptions` — exit timing is the component's concern (the `<Transition>` `timeout`).
 
-- [ ] **Step 2: Write the failing hook test `tests/useRotator.test.ts`.** Use `@testing-library/react`'s `renderHook` + `jest.useFakeTimers()`. Cover: (a) initial state `{ currentIndex: 0, isEntered: false }`; (b) after `startDelay` the hook enters (`isEntered === true`) and stays at index 0; (c) after `time` it exits (`isEntered === false`) while `currentIndex` is still 0; (d) `next()` advances `currentIndex` to 1, wraps back to 0 past the last index, and sets `isEntered === true`; (e) unmount clears timers — spy on `clearTimeout` and assert all active timers are cleared (or, at minimum, that unmounting produces no "state update on unmounted component" warnings). Run `npx jest tests/useRotator.test.ts` and confirm it FAILS (no `src/useRotator.ts` yet).
+- [ ] **Step 3: Write the failing hook test `tests/useRotator.test.ts`.** Use `@testing-library/react`'s `renderHook` + `jest.useFakeTimers()`. Cover: (a) initial state `{ currentIndex: 0, isEntered: false }`; (b) after `startDelay` the hook enters (`isEntered === true`) and stays at index 0; (c) after `time` it exits (`isEntered === false`) while `currentIndex` is still 0; (d) `next()` advances `currentIndex` to 1, wraps back to 0 past the last index, and sets `isEntered === true`; (e) unmount clears timers — spy on `clearTimeout` and assert all active timers are cleared (or, at minimum, that unmounting produces no "state update on unmounted component" warnings). Run `npx jest tests/useRotator.test.ts` and confirm it FAILS (no `src/useRotator.ts` yet).
 
-- [ ] **Step 3: Implement `src/useRotator.ts`** (transcribe this — it is correct; do not "simplify" the timer model):
+- [ ] **Step 4: Implement `src/useRotator.ts`** (transcribe this — it is correct; do not "simplify" the timer model):
   ```ts
   import { useCallback, useEffect, useRef, useState } from "react";
   import type { UseRotatorOptions, UseRotatorReturn } from "./types";
@@ -281,9 +284,9 @@
   ```
   The index advances only in `next()` (wired to `onExited` by the component in Task 3), so the exiting frame always shows the outgoing item — this is the #50 fix. The explicit `clearAllTimers` with no short-circuit is the #58 fix.
 
-- [ ] **Step 4: Run `npx jest tests/useRotator.test.ts`** — confirm PASS.
+- [ ] **Step 5: Run `npx jest tests/useRotator.test.ts`** — confirm PASS.
 
-- [ ] **Step 5: Commit.** `git add src/types.ts src/useRotator.ts tests/useRotator.test.ts`. Commit: `refactor: implement timer-safe useRotator hook in TypeScript`.
+- [ ] **Step 6: Commit.** `git rm src/index.js src/useRotator.js src/transitions.js tests/basic.js` and `git add src/types.ts src/useRotator.ts tests/useRotator.test.ts`. Commit: `refactor: implement timer-safe useRotator hook in TypeScript`.
 
 ---
 
@@ -292,11 +295,10 @@
 **Files:**
 - Create: `src/transitions.ts`, `src/TextRotator.tsx`, `src/index.ts`
 - Create test: `tests/basic.test.tsx`
-- Delete: `src/index.js`, `src/useRotator.js`, `src/transitions.js`, `tests/basic.js`
 
-- [ ] **Step 1: Delete the old JS sources** `src/index.js`, `src/useRotator.js`, `src/transitions.js`, and the old test `tests/basic.js`. (`tests/useRotator.test.ts` from Task 2 still imports `../src/useRotator` → `src/useRotator.ts`, which exists.)
+(The old JS sources were already deleted in Task 2.)
 
-- [ ] **Step 2: Write the failing test `tests/basic.test.tsx`.** Use `renderToStaticMarkup` from `react-dom/server` for static assertions (initial state = `isEntered false` → Transition state `exited`). Cover, asserting on the generated HTML string:
+- [ ] **Step 1: Write the failing test `tests/basic.test.tsx`.** Use `renderToStaticMarkup` from `react-dom/server` for static assertions (initial state = `isEntered false` → Transition state `exited`). Cover, asserting on the generated HTML string:
   1. Plain string array `content: ["text a", "text b"]` → contains `text a` inside a `<div class="" ...>`.
   2. `RotatorItem` `{ text: "text a", className: "test" }` → `<div class="test" style="transition:opacity 500ms ease-in;opacity:0">text a</div>`.
   3. `RotatorItem` `{ text: "text a", link: "https://example.com" }` → contains `<a href="https://example.com">text a</a>`.
@@ -305,7 +307,7 @@
   6. `content: []` → renders `""` (null).
   Then, using `@testing-library/react`'s `render` + `screen` + `act` + `jest.useFakeTimers()`, add ONE rotation test: render `content=["a","b"]` with `time=1000`, `startDelay=0`, `transitionTime=100`; assert `screen.getByText("a")` is present; `act(() => jest.advanceTimersByTime(1000))` then `act(() => jest.advanceTimersByTime(100))` → `screen.getByText("b")`; another `1100ms` → back to `"a"` (wrap). Run `npx jest tests/basic.test.tsx` and confirm it FAILS (the barrel `src/index.ts` does not exist yet).
 
-- [ ] **Step 3: Create `src/transitions.ts`** (typed; same key/values as the old `transitions.js`, `duration` is a number):
+- [ ] **Step 2: Create `src/transitions.ts`** (typed; same key/values as the old `transitions.js`, `duration` is a number):
   ```ts
   import type { CSSProperties } from "react";
 
@@ -328,7 +330,7 @@
   });
   ```
 
-- [ ] **Step 4: Create `src/TextRotator.tsx`** (transcribe this; note the automatic JSX runtime — no `import React` needed):
+- [ ] **Step 3: Create `src/TextRotator.tsx`** (transcribe this; note the automatic JSX runtime — no `import React` needed):
   ```tsx
   import Transition from "react-transition-group/Transition";
   import useRotator from "./useRotator";
@@ -412,7 +414,7 @@
   ```
   Precedence: `render` → `children` → `link` → `text`. Style precedence (later wins): animation-default → animation-state → container `style` → item `style`.
 
-- [ ] **Step 5: Create `src/index.ts`** (barrel):
+- [ ] **Step 4: Create `src/index.ts`** (barrel):
   ```ts
   export { default } from "./TextRotator";
   export { default as TextRotator } from "./TextRotator";
@@ -420,9 +422,9 @@
   export type { RotatorItem, TextRotatorProps, UseRotatorOptions, UseRotatorReturn } from "./types";
   ```
 
-- [ ] **Step 6: Run `npm test`** — confirm all tests pass.
+- [ ] **Step 5: Run `npm test`** — confirm all tests pass.
 
-- [ ] **Step 7: Commit.** `git add src/ tests/` (with the deletions). Commit: `feat: TextRotator component with rich content support and TypeScript exports`.
+- [ ] **Step 6: Commit.** `git add src/ tests/`. Commit: `feat: TextRotator component with rich content support and TypeScript exports`.
 
 ---
 
